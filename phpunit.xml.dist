@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="https://schema.phpunit.de/11.5/phpunit.xsd"
+         bootstrap="vendor/autoload.php"
+         cacheDirectory=".phpunit.cache"
+         colors="true">
+    <php>
+        <env name="APP_ENV" value="test" force="true"/>
+        <env name="APP_SECRET" value="test-secret" force="true"/>
+        <env name="KERNEL_CLASS" value="App\Kernel" force="true"/>
+    </php>
+    <testsuites>
+        <testsuite name="Symfony Skeleton">
+            <directory>tests</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>
+
