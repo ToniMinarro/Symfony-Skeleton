@@ -1,15 +1,21 @@
 name: CI
 
 on:
-  push:
+  # Validate every PR targeting main, including every new commit pushed to it.
+  pull_request:
     branches:
       - main
-  pull_request:
     types:
       - opened
       - synchronize
       - reopened
       - ready_for_review
+
+  # Validate the exact commit that lands on main after a merge.
+  push:
+    branches:
+      - main
+
   workflow_dispatch:
 
 jobs:
