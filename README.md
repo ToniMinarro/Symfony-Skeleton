@@ -1,5 +1,7 @@
 # Symfony Skeleton
 
+[![CI](https://github.com/ToniMinarro/Symfony-Skeleton/actions/workflows/ci.yml/badge.svg)](https://github.com/ToniMinarro/Symfony-Skeleton/actions/workflows/ci.yml)
+
 Reusable Symfony baseline by Minarro Labs.
 
 ## Baseline
