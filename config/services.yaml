@@ -5,6 +5,6 @@ services:
         autowire: true
         autoconfigure: true
 
-    App\\:
+    App\:
         resource: '../src/'
         exclude: '../src/Kernel.php'
