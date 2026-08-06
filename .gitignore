@@ -1,8 +1,14 @@
 /.env.local
+/.env.local.php
 /.env.*.local
 /vendor/
 /var/
 /.phpunit.cache/
 /.php-cs-fixer.cache
 /public/assets/
-
+/config/secrets/prod/prod.decrypt.private.php
+/public/bundles/
+/.php-cs-fixer.php
+/phpunit.xml
+/assets/vendor/
+/config/reference.php

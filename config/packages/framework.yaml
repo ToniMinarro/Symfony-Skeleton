@@ -5,7 +5,3 @@ framework:
     session: true
     php_errors:
         log: true
-    asset_mapper:
-        paths:
-            - assets/
-

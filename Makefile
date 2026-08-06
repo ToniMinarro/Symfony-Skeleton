@@ -26,11 +26,11 @@ composer-install:
 	$(COMPOSE) exec -T -u $(UID):$(GID) -e COMPOSER_HOME=/tmp/composer $(APP) composer install --no-interaction
 
 migrate:
-	$(COMPOSE) exec -T $(APP) php bin/console doctrine:migrations:migrate --no-interaction
+	$(COMPOSE) exec -T $(APP) php bin/console doctrine:migrations:migrate --no-interaction --allow-no-migration
 
 test-database:
 	$(COMPOSE) exec -T $(APP) php bin/console doctrine:database:create --env=test --if-not-exists
-	$(COMPOSE) exec -T $(APP) php bin/console doctrine:migrations:migrate --env=test --no-interaction
+	$(COMPOSE) exec -T $(APP) php bin/console doctrine:migrations:migrate --env=test --no-interaction --allow-no-migration
 
 test: test-database
 	$(COMPOSE) exec -T $(APP) php vendor/bin/phpunit
@@ -56,4 +56,3 @@ shell:
 
 logs:
 	$(COMPOSE) logs -f $(APP)
-

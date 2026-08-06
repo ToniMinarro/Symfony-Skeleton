@@ -35,6 +35,13 @@ make validate
 make fix-style
 ```
 
+## Engineering guides
+
+- [Architecture](docs/architecture.md): default boundaries, dependency rules,
+  persistence and frontend decisions.
+- [Development](docs/development.md): delivery workflow, testing strategy,
+  migrations, security and definition of done.
+
 The development database is `app`; tests use the isolated `app_test`
 database. Schema changes should be expressed as Doctrine migrations.
 
