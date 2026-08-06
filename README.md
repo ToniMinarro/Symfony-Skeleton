@@ -37,6 +37,9 @@ make validate
 make fix-style
 ```
 
+GitHub Actions runs the Docker build, quality gate, and HTTP health check on
+every push to `main` and on pull requests.
+
 The development database is `app`; tests use the isolated `app_test`
 database. Schema changes should be expressed as Doctrine migrations.
 
