@@ -15,27 +15,42 @@ Extract the requested outcome, affected users, current product constraints and
 what evidence would prove the work useful. Read repository instructions and
 product docs before inventing assumptions.
 
-## 2. Run independent lenses
+## 2. Run independent reviewers
 
-Assess the request independently from these perspectives:
+Use the reviewer contracts in `.agents/roles/`:
 
-- Technical: correctness, architecture, maintainability, performance, operations.
-- Commercial: sellability, demonstration value, retention, pricing/delivery cost.
-- User: task success, speed, comprehension, cognitive load, accessibility.
-- Product: priority, outcome, scope, dependencies, smallest useful version.
-- Quality: failures, edge cases, regression risk, tests, observability/support.
-- Security: trust boundaries, authz, tenancy, data/secrets, abuse, secure defaults.
-- Design: hierarchy, interactions, consistency, responsive/accessibility/states.
-- Simplifier: remove scope and reject speculative abstractions/infrastructure.
+- `technical.md`
+- `commercial.md`
+- `user.md`
+- `product.md`
+- `quality.md`
+- `security.md`
+- `design.md`
+- `simplifier.md`
 
-Do not let one lens prime all the others. In particular, do not let technical
-feasibility substitute for product value, or product enthusiasm suppress
-security/quality concerns.
+When the execution environment supports subagents or parallel delegation, send
+the same neutral context to independent reviewer agents using those contracts.
+Do not give them the other reviewers' conclusions before they respond. This is
+preferred because it reduces anchoring and turns the council into genuinely
+independent passes rather than one voice role-playing disagreement.
+
+When subagent delegation is unavailable, perform isolated passes using the same
+contracts. Reset assumptions between passes and avoid carrying a previous
+reviewer's conclusion forward as fact.
+
+Scale the number/depth of active reviewers proportionately for trivial work, but
+always include Security for auth/tenancy/data-sensitive changes and Design for
+meaningful user-facing changes. The Simplifier should run on features,
+architecture and infrastructure changes.
+
+Do not let technical feasibility substitute for product value, or product
+enthusiasm suppress security/quality concerns.
 
 ## 3. Consolidate, do not role-play
 
-Resolve the perspectives into a single direction. Prefer the smallest approach
-that preserves meaningful user/product value and credible safety/correctness.
+Resolve the independent reviews into a single direction. Prefer the smallest
+approach that preserves meaningful user/product value and credible
+safety/correctness.
 
 Before implementation, choose:
 
@@ -49,8 +64,8 @@ After implementation/review, choose:
 - `READY WITH FOLLOW-UPS`
 - `CHANGES REQUIRED`
 
-Only expose individual lens notes when they conflict, identify a material risk,
-or the user explicitly asks for the full council view.
+Only expose individual reviewer notes when they conflict, identify a material
+risk, or the user explicitly asks for the full council view.
 
 ## 4. Severity
 
