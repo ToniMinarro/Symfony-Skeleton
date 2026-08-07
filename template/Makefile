@@ -71,6 +71,7 @@ fix-style:
 
 base-sync:
 	$(COMPOSE) exec -T $(APP) php tools/base-sync.php
+	$(COMPOSE) exec -T $(APP) chown -R $(UID):$(GID) /app/vendor
 	@packages="$$( $(COMPOSE) exec -T $(APP) php tools/base-sync.php --packages )"; \
 		$(COMPOSE) exec -T -u $(UID):$(GID) -e COMPOSER_HOME=/tmp/composer $(APP) composer update $$packages --with-all-dependencies --no-interaction --prefer-dist --no-progress
 
