@@ -77,7 +77,7 @@ base-sync:
 base-update:
 	@command -v $(COPIER) >/dev/null 2>&1 || { echo "Copier >=9.17 is required. Install it with: pipx install copier  (or: uv tool install copier)"; exit 1; }
 	@test -f .symfony-skeleton.yml || { echo "This project is not yet linked to Symfony-Skeleton."; exit 1; }
-	$(COPIER) update --defaults --trust
+	$(COPIER) update --answers-file .symfony-skeleton.yml --defaults --trust
 	$(MAKE) build
 	$(MAKE) start
 	$(MAKE) base-sync
