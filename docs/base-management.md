@@ -4,9 +4,9 @@ Symfony-Skeleton is the technical and architectural baseline for Minarro Labs Sy
 
 ## Ownership model
 
-The base owns cross-project technical policy: supported PHP/Symfony versions, common dependencies, quality tooling, the CI quality gate, the standard Make targets, pull-request hygiene, and the architecture/development guides copied under `docs/base/`.
+The base owns cross-project technical policy: supported PHP/Symfony versions, common dependencies, quality tooling, the CI quality gate, the standard Make targets, pull-request hygiene, shared AI-review policy, and the architecture/development guides copied under `docs/base/`.
 
-Product repositories own business capabilities, migrations, templates and browser behaviour specific to the product, security rules, integrations, deployment-provider configuration, and any product-only dependency. Product-specific Make targets belong in `Makefile.app` so the base `Makefile` can be updated without conflicts.
+Product repositories own business capabilities, migrations, templates and browser behaviour specific to the product, product-specific security rules, integrations, deployment-provider configuration, and any product-only dependency. Product-specific Make targets belong in `Makefile.app` so the base `Makefile` can be updated without conflicts. Product `AGENTS.md` files own only product specialization and should reference the Skeleton-managed `AGENTS.base.md`.
 
 ## Updating a consumer
 
@@ -18,8 +18,12 @@ make base-update
 
 The target runs `copier update`, synchronises managed Composer constraints without deleting product dependencies, rebuilds the runtime and executes the complete application quality gate. Base updates must be delivered through a pull request and merged only with green CI.
 
-## Versioning
+Do not manually copy files that are owned by the template. Product-specific adjustments after a base update should be kept outside the Skeleton-owned baseline or as documented specialization in `AGENTS.md`/product docs.
+
+## Versioning and releases
 
 Stable template releases use immutable PEP 440-compatible Git tags (`v1.0.0`, `v1.1.0`, ...). Patch releases are compatible fixes, minor releases are compatible baseline improvements, and major releases may require an explicit migration in consuming applications.
+
+The current release version is stored in root `VERSION`. A release pull request updates that file. When the change reaches `main`, `.github/workflows/release.yml` validates the value and creates the immutable annotated `vX.Y.Z` tag automatically. Existing tags are never moved or replaced.
 
 Do not edit `.symfony-skeleton.yml` manually. Let Copier update it so its smart-diff history remains valid.
