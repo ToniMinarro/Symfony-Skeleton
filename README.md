@@ -1,5 +1,7 @@
 # Symfony Skeleton
 
+[![CI](https://github.com/ToniMinarro/Symfony-Skeleton/actions/workflows/ci.yml/badge.svg)](https://github.com/ToniMinarro/Symfony-Skeleton/actions/workflows/ci.yml)
+
 Reusable Symfony baseline by Minarro Labs.
 
 ## Baseline
@@ -31,9 +33,14 @@ The web container listens at <http://localhost:8080>. Use
 ```bash
 make test
 make analyse
+make check-style
 make validate
 make fix-style
 ```
+
+GitHub Actions builds the Docker stack, runs the complete quality gate and
+performs the HTTP health check on pull requests and on every commit merged to
+`main`.
 
 ## Engineering guides
 

@@ -3,7 +3,7 @@ GID := $(shell id -g)
 COMPOSE := docker compose
 APP := app
 
-.PHONY: init build start stop down erase composer-install migrate test-database test analyse validate fix-style shell logs
+.PHONY: init build start stop down erase composer-install migrate test-database test analyse check-style validate fix-style shell logs
 
 init: build start composer-install migrate
 
@@ -31,12 +31,16 @@ migrate:
 test-database:
 	$(COMPOSE) exec -T $(APP) php bin/console doctrine:database:create --env=test --if-not-exists
 	$(COMPOSE) exec -T $(APP) php bin/console doctrine:migrations:migrate --env=test --no-interaction --allow-no-migration
+	$(COMPOSE) exec -T $(APP) php bin/console doctrine:migrations:up-to-date --env=test
 
 test: test-database
 	$(COMPOSE) exec -T $(APP) php vendor/bin/phpunit
 
 analyse:
 	$(COMPOSE) exec -T $(APP) php vendor/bin/phpstan analyse --memory-limit=512M
+
+check-style:
+	$(COMPOSE) exec -T $(APP) php vendor/bin/php-cs-fixer fix --dry-run --diff
 
 validate:
 	$(COMPOSE) exec -T -u $(UID):$(GID) -e COMPOSER_HOME=/tmp/composer $(APP) composer validate --strict
@@ -47,6 +51,7 @@ validate:
 	$(COMPOSE) exec -T $(APP) php bin/console debug:asset-map
 	$(MAKE) test
 	$(MAKE) analyse
+	$(MAKE) check-style
 
 fix-style:
 	$(COMPOSE) exec -T $(APP) php vendor/bin/php-cs-fixer fix
