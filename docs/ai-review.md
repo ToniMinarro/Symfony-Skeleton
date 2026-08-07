@@ -32,9 +32,11 @@ The technical reviewer must not reward complexity for its own sake.
 
 ### Commercial
 
-Ask whether the change helps the product be sold, demonstrated, priced,
-retained or delivered more efficiently. For internal engineering work, only
-raise commercial findings when there is a real cost or delivery consequence.
+Ask whether the change helps the product be sold, demonstrated or piloted,
+improves time-to-value, adoption, willingness-to-pay signals, retention,
+delivery/support cost, differentiation or sales friction. For internal
+engineering work, only raise commercial findings when there is a real cost or
+delivery consequence.
 
 ### User
 
@@ -44,15 +46,19 @@ actual problem improves.
 
 ### Product
 
-Challenge priority and scope. Identify the expected outcome, what evidence would
-show value, dependencies and the smallest useful version. A technically sound
-feature may still be a poor product decision.
+Challenge priority and scope. Identify the expected outcome, evidence supporting
+the problem/value, competing priorities, dependencies, the smallest useful
+validation/implementation and the signal that would justify continuing,
+iterating or stopping. A technically sound feature may still be a poor product
+decision.
 
 ### Quality
 
 Identify failure modes, regression surface, edge cases, test levels,
 observability and operational/support concerns. Prefer tests that buy confidence
-over tests that merely increase count.
+over tests that merely increase count. For material product hypotheses, also
+ensure that success can be observed after release when doing so will inform a
+future decision.
 
 ### Security
 
@@ -80,17 +86,21 @@ need.
 For meaningful features and product decisions, answer these questions before
 committing to the solution:
 
-1. What user/business problem are we solving?
-2. What is the smallest outcome that materially improves it?
-3. What are the principal security/quality constraints?
-4. Does this fit the current product direction?
-5. Is there a simpler approach that preserves the value?
+1. What user/business problem are we solving and what evidence supports it?
+2. Is this a better use of product capacity than the strongest known alternative?
+3. What is the smallest implementation or experiment that can validate value?
+4. What observable signal would justify continuing, iterating or stopping?
+5. Could customer discovery or manual validation answer the question more cheaply?
+6. What are the principal security/quality constraints?
+7. Is there a simpler approach that preserves the value?
 
 The result should be one of:
 
 - `GO` — scope and approach are justified.
 - `MODIFY` — useful work, but scope or approach should change.
-- `DO NOT BUILD` — insufficient value, wrong timing or unjustified complexity.
+- `DO NOT BUILD` — insufficient value, wrong direction or unjustified complexity.
+- `DO NOT BUILD YET` — the direction may be valid, but evidence/timing does not
+  justify implementation yet; prefer a smaller validation step.
 
 Agents may proceed with `MODIFY` using the improved scope when the user's intent
 is clear; do not create unnecessary confirmation loops.
@@ -120,6 +130,20 @@ A finding is normally blocking when it creates credible risk of:
 Do not make subjective style, theoretical scalability, commercial preference or
 minor design polish block CI/merge by default.
 
+## Product learning
+
+For work carrying a meaningful product/commercial hypothesis, preserve a
+lightweight learning loop only when it helps a future decision:
+
+1. Hypothesis.
+2. Expected signal.
+3. Observed result.
+4. Decision: continue, iterate, stop or revert.
+
+Do not require this ceremony for routine maintenance, straightforward bug fixes
+or trivial improvements. Passing CI proves implementation confidence; it does
+not prove that the product decision created user or market value.
+
 ## Design review standard
 
 Every meaningful user-facing change should consider:
@@ -144,7 +168,7 @@ problem.
 The default response should be concise and synthesized. A recommended shape is:
 
 ```text
-Decision: GO / MODIFY / DO NOT BUILD
+Decision: GO / MODIFY / DO NOT BUILD / DO NOT BUILD YET
 
 What matters
 - ...
@@ -152,7 +176,7 @@ What matters
 Risks / blockers
 - ...
 
-Implementation direction
+Implementation or validation direction
 - ...
 
 Validation
@@ -190,4 +214,5 @@ constraints to their root `AGENTS.md`, for example:
 - evidence required before a feature can be considered complete.
 
 The common perspectives should not be copied and drift independently when a
-project can instead point back to this baseline.
+project can instead point back to this baseline. Do not add reviewer roles only
+to give a question a new name when an existing reviewer can own it clearly.
