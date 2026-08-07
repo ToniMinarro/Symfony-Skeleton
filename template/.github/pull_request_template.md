@@ -4,11 +4,27 @@
 
 ## Why
 
-<!-- Explain the problem or need this pull request addresses. -->
+<!-- Explain the user/product/engineering problem this pull request addresses. -->
 
 ## Impact
 
-<!-- Describe the impact on users, development, data, or deployment. -->
+<!-- Describe impact on users, product, development, data, operations or deployment. -->
+
+## Minarro Labs review
+
+**Verdict:** <!-- READY / READY WITH FOLLOW-UPS / CHANGES REQUIRED -->
+
+### Blockers
+<!-- Security/tenant/data-loss/correctness/migration/critical-validation issues. Remove if none. -->
+
+### Important
+<!-- High-value technical, product, user, commercial, QA, security, design or simplification findings. Remove if none. -->
+
+### Follow-ups / intentionally deferred
+<!-- Useful but non-blocking work. Remove if none. -->
+
+## Design evidence
+<!-- For meaningful user-facing changes: screenshots/preview and responsive/accessibility notes. Remove if not applicable. -->
 
 ## Validation
 
@@ -16,13 +32,14 @@
 - [ ] Affected functional flow exercised, when applicable
 - [ ] Database migration or upgrade path validated, when applicable
 - [ ] Runtime smoke test completed for runtime-facing changes, when applicable
+- [ ] User-facing flow reviewed for responsive, accessibility and empty/loading/error/success states, when applicable
 
 ## Evidence
 
-<!-- Add screenshots, video, preview URLs, command output, or other useful evidence. -->
+<!-- Screenshots, video, preview URLs, command output or other useful evidence. -->
 
 ## Risks and limitations
 
-<!-- Note migrations, compatibility concerns, known debt, or intentionally excluded scope. -->
+<!-- Migrations, compatibility concerns, known debt or intentionally excluded scope. -->
 
 Closes #<issue>
