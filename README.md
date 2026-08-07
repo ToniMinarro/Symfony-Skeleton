@@ -48,9 +48,12 @@ performs the HTTP health check on pull requests and on every commit merged to
   persistence and frontend decisions.
 - [Development](docs/development.md): delivery workflow, testing strategy,
   migrations, security and definition of done.
+- [Base lifecycle](docs/base-management.md): Copier ownership, versioning and
+  safe updates for consuming applications.
 
 The development database is `app`; tests use the isolated `app_test`
 database. Schema changes should be expressed as Doctrine migrations.
 
 This repository intentionally contains no product domain. It is a starting
-point for new Symfony applications, not a shared business framework.
+point for new Symfony applications and the versioned technical/architectural
+base they can continue to update from; it is not a shared business framework.
