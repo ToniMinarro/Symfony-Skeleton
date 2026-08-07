@@ -15,6 +15,10 @@ Extract the requested outcome, affected users, current product constraints and
 what evidence would prove the work useful. Read repository instructions and
 product docs before inventing assumptions.
 
+For meaningful product work, distinguish facts from assumptions. Capture the
+minimum useful decision context: problem evidence, expected value, competing
+priorities and the smallest validation step that could reduce uncertainty.
+
 ## 2. Run independent reviewers
 
 Use the reviewer contracts in `.agents/roles/`:
@@ -44,7 +48,8 @@ meaningful user-facing changes. The Simplifier should run on features,
 architecture and infrastructure changes.
 
 Do not let technical feasibility substitute for product value, or product
-enthusiasm suppress security/quality concerns.
+enthusiasm suppress security/quality concerns. Do not create new reviewer roles
+when the current contracts can own the question clearly.
 
 ## 3. Consolidate, do not role-play
 
@@ -52,11 +57,25 @@ Resolve the independent reviews into a single direction. Prefer the smallest
 approach that preserves meaningful user/product value and credible
 safety/correctness.
 
+For meaningful feature proposals, consolidation must explicitly answer:
+
+1. What evidence supports building this now?
+2. Is this a better use of product capacity than the strongest known alternative?
+3. What is the smallest implementation or experiment that can validate value?
+4. What observable signal would justify continuing, iterating or stopping?
+5. Is a manual/customer-discovery step cheaper than building first?
+
+Insufficient evidence for a sizeable investment is a valid reason to recommend
+`DO NOT BUILD YET` with a smaller validation action. This is different from a
+permanent rejection.
+
 Before implementation, choose:
 
 - `GO`
 - `MODIFY`
 - `DO NOT BUILD`
+- `DO NOT BUILD YET` when the direction may be valid but evidence/timing does
+  not justify implementation yet.
 
 After implementation/review, choose:
 
@@ -81,7 +100,20 @@ simplification ideas advisory unless they reveal a concrete blocker.
 For any meaningful UI change, apply the `product-design` skill as part of this
 review. Do not accept "works" as sufficient evidence of UI quality.
 
-## 6. Execution behaviour
+## 6. Product learning
+
+For work that carries a meaningful product/commercial hypothesis, define a
+lightweight learning loop only when it helps a future decision:
+
+- hypothesis;
+- expected signal;
+- observed result;
+- decision: continue, iterate, stop or revert.
+
+Do not force this on routine maintenance, bug fixes or trivial improvements.
+Passing CI validates implementation quality, not market/user value.
+
+## 7. Execution behaviour
 
 When the user asked to implement rather than merely advise:
 
