@@ -7,7 +7,7 @@ COPIER ?= copier
 
 -include Makefile.app
 
-.PHONY: init build start stop down erase ps composer-install composer console migrate test-database test analyse check-style validate fix-style base-sync base-update shell bash logs
+.PHONY: init build start stop down erase ps composer-install composer console migrate test-database test analyse check-style validate fix-style base-sync base-update base-version shell bash logs
 
 init: build start composer-install migrate
 
@@ -82,6 +82,9 @@ base-update:
 	$(MAKE) start
 	$(MAKE) base-sync
 	$(MAKE) validate
+
+base-version:
+	@cat .symfony-skeleton-version
 
 shell:
 	$(COMPOSE) exec -u $(UID):$(GID) $(APP) sh
