@@ -1,0 +1,13 @@
+_min_copier_version: "9.17.0"
+_subdirectory: template
+_answers_file: .symfony-skeleton.yml
+
+project_name:
+  type: str
+  default: Symfony App
+  help: Human-readable application name.
+
+project_slug:
+  type: str
+  default: symfony-app
+  help: Stable machine-readable project identifier.
