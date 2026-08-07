@@ -31,7 +31,7 @@ migrate:
 test-database:
 	$(COMPOSE) exec -T $(APP) php bin/console doctrine:database:create --env=test --if-not-exists
 	$(COMPOSE) exec -T $(APP) php bin/console doctrine:migrations:migrate --env=test --no-interaction --allow-no-migration
-	$(COMPOSE) exec -T $(APP) php bin/console doctrine:schema:validate --env=test
+	$(COMPOSE) exec -T $(APP) php bin/console doctrine:migrations:up-to-date --env=test
 
 test: test-database
 	$(COMPOSE) exec -T $(APP) php vendor/bin/phpunit
